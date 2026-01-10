@@ -332,14 +332,14 @@
 
   <main>
     <section id="home" class="intro">
-      <img src="photo.jpg" alt="Harrison E. Katz" class="photo">
+      <img src="photo1.jpg" alt="Harrison E. Katz" class="photo" id="profile-photo">
       <div class="bio">
         <h1>Welcome!</h1>
         <p>
           I lead <strong>Forecasting Data Science</strong> at <strong>Airbnb</strong>. My research focuses on Bayesian methods for compositional and hierarchical time series—coherence by construction, empirical calibration, open code. Ph.D. in Statistics from <strong>UCLA</strong>.
         </p>
         <div class="contact-links">
-          <a href="mailto:harrison.katz@airbnb.com">✉ Email</a>
+          <a href="/cdn-cgi/l/email-protection#fa929b888893899594d4919b8e80ba9b9388989498d4999597">✉ Email</a>
           <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank">📚 Scholar</a>
           <a href="https://github.com/harrisonekatz" target="_blank">💻 GitHub</a>
           <a href="https://linkedin.com/in/harrisonekatz" target="_blank">🔗 LinkedIn</a>
@@ -384,9 +384,13 @@
         <span class="toggle">+</span>
       </h2>
       <div class="section-content">
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Most of my work falls into three areas: allocation forecasting, delay-aware evaluation, and high-dimensional pooling.</p>
+        
+        <h3 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 1.5rem 0 1rem;">Bayesian Compositional Methods</h3>
+        
         <div class="research-item">
-          <div class="research-title">Allocation Forecasting (B-DARMA)</div>
-          <div class="research-desc">Foundational Dirichlet ARMA framework for forecasting category allocations with density coherence, multi-horizon simulation, and empirical calibration.</div>
+          <div class="research-title">A Bayesian Dirichlet Auto-Regressive Moving Average Model for Forecasting Lead Times</div>
+          <div class="research-desc">With Kai Brusch & Robert Weiss. <em>International Journal of Forecasting</em>, 2024.</div>
           <div class="research-links">
             <a href="https://www.sciencedirect.com/science/article/pii/S0169207024000049">Article</a>
             <a href="https://arxiv.org/abs/2303.17478">arXiv</a>
@@ -394,34 +398,78 @@
           </div>
         </div>
         <div class="research-item">
-          <div class="research-title">Volatility for Allocation Models (B-DARCH)</div>
-          <div class="research-desc">Time-varying precision for Dirichlet ARMA improves density forecasts when dispersion clusters.</div>
+          <div class="research-title">A Bayesian Dirichlet Auto-Regressive Conditional Heteroskedasticity Model for Forecasting Currency Shares</div>
+          <div class="research-desc">With Robert Weiss. Under review, 2025.</div>
           <div class="research-links">
             <a href="https://arxiv.org/abs/2507.14132">arXiv</a>
             <a href="https://github.com/harrisonekatz/B-DARCH-paper">Code</a>
           </div>
         </div>
         <div class="research-item">
-          <div class="research-title">Delay-Aware Forecasting</div>
-          <div class="research-desc">Two-part method for time-shifted metrics that evaluates on the correct time axis.</div>
+          <div class="research-title">Centered MA Dirichlet ARMA for Financial Compositions</div>
+          <div class="research-desc">A minimal centering fix improves density forecasts on H.8 bank-asset shares. Working paper, 2025.</div>
           <div class="research-links">
-            <a href="https://arxiv.org/abs/2504.11194">arXiv</a>
-            <a href="https://github.com/harrisonekatz/consistent_forecasting_bdarma_paper">Code</a>
+            <a href="https://arxiv.org/abs/2510.18903">arXiv</a>
           </div>
         </div>
         <div class="research-item">
-          <div class="research-title">Shrinkage Priors for B-DARMA</div>
-          <div class="research-desc">Comparing global-local shrinkage priors—horseshoe, Bayesian Lasso, and the new Cradle prior—for compositional time series.</div>
+          <div class="research-title">Sensitivity Analysis of Priors in the Bayesian Dirichlet Auto-Regressive Moving Average Model</div>
+          <div class="research-desc">With Liz Medina & Robert Weiss. <em>MDPI: Forecasting</em>, 2025.</div>
           <div class="research-links">
             <a href="https://www.mdpi.com/2571-9394/7/3/32">Article</a>
             <a href="https://github.com/harrisonekatz/bdarma_sensitivity_analysis">Code</a>
           </div>
         </div>
         <div class="research-item">
-          <div class="research-title">Airbnb Booking Dynamics During COVID-19</div>
-          <div class="research-desc">Lead-time distributions for Airbnb demand metrics across pandemic phases.</div>
+          <div class="research-title">Forecasting the U.S. Renewable-Energy Mix with a Bayesian Dirichlet ARMA Model</div>
+          <div class="research-desc">With Thomas Maierhofer. <em>Renewable Energy Forecasting: Innovations and Breakthroughs</em>, 2025.</div>
+          <div class="research-links">
+            <a href="https://www.mdpi.com/2571-9394/7/4/62">Article</a>
+          </div>
+        </div>
+        
+        <h3 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 1.5rem 0 1rem;">High-Dimensional Shrinkage</h3>
+        
+        <div class="research-item">
+          <div class="research-title">Bayesian Shrinkage in High-Dimensional VAR Models: A Comparative Study</div>
+          <div class="research-desc">With Robert Weiss. <em>International Journal of Statistics and Probability</em>, 2025.</div>
+          <div class="research-links">
+            <a href="https://arxiv.org/abs/2504.05489">arXiv</a>
+          </div>
+        </div>
+        
+        <h3 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 1.5rem 0 1rem;">Delay-Aware Forecasting</h3>
+        
+        <div class="research-item">
+          <div class="research-title">Two-Part Forecasting for Time-Shifted Metrics</div>
+          <div class="research-desc">With Erica Savage & Kai Brusch. <em>Foresight: The International Journal of Applied Forecasting</em>, 2025.</div>
+          <div class="research-links">
+            <a href="https://arxiv.org/abs/2504.11194">arXiv</a>
+            <a href="https://github.com/harrisonekatz/consistent_forecasting_bdarma_paper">Code</a>
+          </div>
+        </div>
+        <div class="research-item">
+          <div class="research-title">Impact by Design: Translating "Lead Times in Flux" into an R Handbook</div>
+          <div class="research-desc">Monitors full lead-time distributions and turns them into a pickup-risk bound. Note, 2025.</div>
+          <div class="research-links">
+            <a href="https://arxiv.org/abs/2511.12763">arXiv</a>
+          </div>
+        </div>
+        
+        <h3 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 1.5rem 0 1rem;">Tourism & Hospitality</h3>
+        
+        <div class="research-item">
+          <div class="research-title">Lead Times in Flux: Analyzing Airbnb Booking Dynamics During Global Upheavals (2018–2022)</div>
+          <div class="research-desc">With Erica Savage & Peter Coles. <em>Annals of Tourism Research: Empirical Insights</em>, 2025.</div>
           <div class="research-links">
             <a href="#">Article</a>
+          </div>
+        </div>
+        <div class="research-item">
+          <div class="research-title">Slomads Rising: Structural Shifts in U.S. Airbnb Stay Lengths During and After the Pandemic (2019–2024)</div>
+          <div class="research-desc">With Erica Savage. <em>MDPI: Tourism & Hospitality</em>, 2025.</div>
+          <div class="research-links">
+            <a href="https://www.mdpi.com/2673-5768/6/4/182">Article</a>
           </div>
         </div>
       </div>
@@ -432,7 +480,11 @@
     All views are my own. Last updated January 2026.
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Random photo selection
+    const photos = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg', 'photo6.jpg'];
+    document.getElementById('profile-photo').src = photos[Math.floor(Math.random() * photos.length)];
+
     // Theme toggle
     const toggle = document.querySelector('.theme-toggle');
     const html = document.documentElement;
@@ -478,9 +530,4 @@
     });
 
     // Initialize sections as expanded
-    document.querySelectorAll('.section-content').forEach(content => {
-      content.style.maxHeight = content.scrollHeight + 'px';
-    });
-  </script>
-</body>
-</html>
+    document.
