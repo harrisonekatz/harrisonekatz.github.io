@@ -339,7 +339,7 @@
           I lead <strong>Forecasting Data Science</strong> at <strong>Airbnb</strong>. My research focuses on Bayesian methods for compositional and hierarchical time series—coherence by construction, empirical calibration, open code. Ph.D. in Statistics from <strong>UCLA</strong>.
         </p>
         <div class="contact-links">
-          <a href="/cdn-cgi/l/email-protection#fa929b888893899594d4919b8e80ba9b9388989498d4999597">✉ Email</a>
+          <a href="mailto:harrison.katz@airbnb.com">✉ Email</a>
           <a href="https://scholar.google.com/citations?user=0_TiSfYAAAAJ&hl=en" target="_blank">📚 Scholar</a>
           <a href="https://github.com/harrisonekatz" target="_blank">💻 GitHub</a>
           <a href="https://linkedin.com/in/harrisonekatz" target="_blank">🔗 LinkedIn</a>
@@ -487,10 +487,16 @@
     All views are my own. Last updated January 2026.
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Random photo selection
-    const photos = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg', 'photo6.jpg'];
-    document.getElementById('profile-photo').src = photos[Math.floor(Math.random() * photos.length)];
+  <script>
+    // Random photo selection - runs immediately
+    (function() {
+      const photos = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg', 'photo6.jpg'];
+      const randomPhoto = photos[Math.floor(Math.random() * photos.length)];
+      const img = document.getElementById('profile-photo');
+      if (img) {
+        img.src = randomPhoto;
+      }
+    })();
 
     // Theme toggle
     const toggle = document.querySelector('.theme-toggle');
