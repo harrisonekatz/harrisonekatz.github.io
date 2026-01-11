@@ -57,7 +57,6 @@
       color: var(--accent-hover);
     }
 
-    /* Navigation */
     nav {
       position: fixed;
       top: 0;
@@ -117,7 +116,6 @@
       color: var(--text);
     }
 
-    /* Main content */
     main {
       max-width: 800px;
       margin: 0 auto;
@@ -128,7 +126,6 @@
       margin-bottom: 3rem;
     }
 
-    /* Hero / Intro */
     .intro {
       display: grid;
       grid-template-columns: 140px 1fr;
@@ -170,7 +167,6 @@
       gap: 0.35rem;
     }
 
-    /* Section headers */
     .section-header {
       font-family: 'Source Serif 4', Georgia, serif;
       font-size: 1.1rem;
@@ -210,7 +206,6 @@
       opacity: 0;
     }
 
-    /* News table */
     .news-table {
       width: 100%;
     }
@@ -241,7 +236,6 @@
       font-style: italic;
     }
 
-    /* Research items */
     .research-item {
       padding: 1rem 0;
       border-bottom: 1px solid var(--border);
@@ -268,7 +262,6 @@
       font-size: 0.85rem;
     }
 
-    /* Footer */
     footer {
       max-width: 800px;
       margin: 0 auto;
@@ -279,7 +272,6 @@
       border-top: 1px solid var(--border);
     }
 
-    /* Mobile */
     @media (max-width: 600px) {
       .intro {
         grid-template-columns: 1fr;
@@ -368,7 +360,7 @@
           </div>
           <div class="news-row">
             <span class="news-date">Sep 2025</span>
-            <span class="news-content">Paper with Erica Savage on Airbnb trip length distributions published in <em>MDPI: Tourism & Hospitality</em> (<a href="https://www.mdpi.com/2673-5768/6/4/182">link</a>).</span>
+            <span class="news-content">Paper with Erica Savage on Airbnb trip length distributions published in <em>MDPI: Tourism &amp; Hospitality</em> (<a href="https://www.mdpi.com/2673-5768/6/4/182">link</a>).</span>
           </div>
           <div class="news-row">
             <span class="news-date">Jun 2025</span>
@@ -390,7 +382,7 @@
         
         <div class="research-item">
           <div class="research-title">A Bayesian Dirichlet Auto-Regressive Moving Average Model for Forecasting Lead Times</div>
-          <div class="research-desc">With Kai Brusch & Robert Weiss. <em>International Journal of Forecasting</em>, 2024.</div>
+          <div class="research-desc">With Kai Brusch &amp; Robert Weiss. <em>International Journal of Forecasting</em>, 2024.</div>
           <div class="research-links">
             <a href="https://www.sciencedirect.com/science/article/pii/S0169207024000049">Article</a>
             <a href="https://arxiv.org/abs/2303.17478">arXiv</a>
@@ -415,7 +407,7 @@
         </div>
         <div class="research-item">
           <div class="research-title">Sensitivity Analysis of Priors in the Bayesian Dirichlet Auto-Regressive Moving Average Model</div>
-          <div class="research-desc">With Liz Medina & Robert Weiss. <em>MDPI: Forecasting</em>, 2025.</div>
+          <div class="research-desc">With Liz Medina &amp; Robert Weiss. <em>MDPI: Forecasting</em>, 2025.</div>
           <div class="research-links">
             <a href="https://www.mdpi.com/2571-9394/7/3/32">Article</a>
             <a href="https://arxiv.org/abs/2506.13973">arXiv</a>
@@ -448,7 +440,7 @@
         
         <div class="research-item">
           <div class="research-title">Two-Part Forecasting for Time-Shifted Metrics</div>
-          <div class="research-desc">With Erica Savage & Kai Brusch. <em>Foresight: The International Journal of Applied Forecasting</em>, 2025.</div>
+          <div class="research-desc">With Erica Savage &amp; Kai Brusch. <em>Foresight: The International Journal of Applied Forecasting</em>, 2025.</div>
           <div class="research-links">
             <a href="https://arxiv.org/abs/2504.11194">arXiv</a>
             <a href="https://github.com/harrisonekatz/consistent_forecasting_bdarma_paper">Code</a>
@@ -463,18 +455,18 @@
           </div>
         </div>
         
-        <h3 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 1.5rem 0 1rem;">Tourism & Hospitality</h3>
+        <h3 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 1.5rem 0 1rem;">Tourism &amp; Hospitality</h3>
         
         <div class="research-item">
           <div class="research-title">Lead Times in Flux: Analyzing Airbnb Booking Dynamics During Global Upheavals (2018–2022)</div>
-          <div class="research-desc">With Erica Savage & Peter Coles. <em>Annals of Tourism Research: Empirical Insights</em>, 2025.</div>
+          <div class="research-desc">With Erica Savage &amp; Peter Coles. <em>Annals of Tourism Research: Empirical Insights</em>, 2025.</div>
           <div class="research-links">
             <a href="https://www.sciencedirect.com/science/article/pii/S2666957925000205">Article</a>
           </div>
         </div>
         <div class="research-item">
           <div class="research-title">Slomads Rising: Structural Shifts in U.S. Airbnb Stay Lengths During and After the Pandemic (2019–2024)</div>
-          <div class="research-desc">With Erica Savage. <em>MDPI: Tourism & Hospitality</em>, 2025.</div>
+          <div class="research-desc">With Erica Savage. <em>MDPI: Tourism &amp; Hospitality</em>, 2025.</div>
           <div class="research-links">
             <a href="https://www.mdpi.com/2673-5768/6/4/182">Article</a>
           </div>
@@ -488,31 +480,30 @@
   </footer>
 
   <script>
-    // Random photo selection - runs immediately
+    // Random photo selection
     (function() {
-      const photos = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg', 'photo6.jpg'];
-      const randomPhoto = photos[Math.floor(Math.random() * photos.length)];
-      const img = document.getElementById('profile-photo');
+      var photos = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg', 'photo6.jpg'];
+      var randomIndex = Math.floor(Math.random() * photos.length);
+      var img = document.getElementById('profile-photo');
       if (img) {
-        img.src = randomPhoto;
+        img.src = photos[randomIndex];
       }
     })();
 
     // Theme toggle
-    const toggle = document.querySelector('.theme-toggle');
-    const html = document.documentElement;
+    var toggle = document.querySelector('.theme-toggle');
+    var html = document.documentElement;
     
-    // Check saved preference or system preference
-    const savedTheme = localStorage.getItem('theme');
-    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var savedTheme = localStorage.getItem('theme');
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
     if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
       html.setAttribute('data-theme', 'dark');
       toggle.textContent = '☾';
     }
     
-    toggle.addEventListener('click', () => {
-      const isDark = html.getAttribute('data-theme') === 'dark';
+    toggle.addEventListener('click', function() {
+      var isDark = html.getAttribute('data-theme') === 'dark';
       if (isDark) {
         html.removeAttribute('data-theme');
         toggle.textContent = '☀';
@@ -525,10 +516,10 @@
     });
 
     // Collapsible sections
-    document.querySelectorAll('.section-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const content = header.nextElementSibling;
-        const isHidden = content.classList.contains('hidden');
+    document.querySelectorAll('.section-header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var content = header.nextElementSibling;
+        var isHidden = content.classList.contains('hidden');
         
         if (isHidden) {
           content.classList.remove('hidden');
@@ -543,4 +534,9 @@
     });
 
     // Initialize sections as expanded
-    document.
+    document.querySelectorAll('.section-content').forEach(function(content) {
+      content.style.maxHeight = content.scrollHeight + 'px';
+    });
+  </script>
+</body>
+</html>
