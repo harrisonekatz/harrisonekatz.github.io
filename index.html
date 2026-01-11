@@ -18,7 +18,6 @@
       --border: #e7e5e4;
       --transition: 0.2s ease;
     }
-
     [data-theme="dark"] {
       --bg: #1c1917;
       --bg-alt: #292524;
@@ -28,284 +27,54 @@
       --accent-hover: #bae6fd;
       --border: #44403c;
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Source Sans 3', -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      transition: background var(--transition), color var(--transition);
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: color var(--transition);
-    }
-
-    a:hover {
-      color: var(--accent-hover);
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      z-index: 100;
-      transition: background var(--transition), border-color var(--transition);
-    }
-
-    .nav-inner {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-name {
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .theme-toggle {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.25rem;
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      transition: color var(--transition);
-    }
-
-    .theme-toggle:hover {
-      color: var(--text);
-    }
-
-    main {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 6rem 2rem 4rem;
-    }
-
-    section {
-      margin-bottom: 3rem;
-    }
-
-    .intro {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 2rem;
-      align-items: start;
-    }
-
-    .photo {
-      width: 200px;
-      height: 200px;
-      border-radius: 8px;
-      object-fit: cover;
-      background: var(--bg-alt);
-    }
-
-    .bio h1 {
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-
-    .bio p {
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1.25rem;
-      font-size: 0.9rem;
-    }
-
-    .contact-links a {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .section-header {
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      user-select: none;
-    }
-
-    .section-header .toggle {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      font-weight: 400;
-      transition: transform var(--transition);
-    }
-
-    .section-header.collapsed .toggle {
-      transform: rotate(0deg);
-    }
-
-    .section-header:not(.collapsed) .toggle {
-      transform: rotate(45deg);
-    }
-
-    .section-content {
-      overflow: hidden;
-      transition: max-height 0.3s ease, opacity 0.3s ease;
-    }
-
-    .section-content.hidden {
-      max-height: 0;
-      opacity: 0;
-    }
-
-    .news-table {
-      width: 100%;
-    }
-
-    .news-row {
-      display: grid;
-      grid-template-columns: 90px 1fr;
-      gap: 1rem;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.9rem;
-    }
-
-    .news-row:last-child {
-      border-bottom: none;
-    }
-
-    .news-date {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-
-    .news-content {
-      color: var(--text);
-    }
-
-    .news-content em {
-      font-style: italic;
-    }
-
-    .research-item {
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .research-item:last-child {
-      border-bottom: none;
-    }
-
-    .research-title {
-      font-weight: 600;
-      margin-bottom: 0.35rem;
-    }
-
-    .research-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .research-links {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.85rem;
-    }
-
-    footer {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Source Sans 3', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; transition: background var(--transition), color var(--transition); }
+    a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--accent-hover); }
+    nav { position: fixed; top: 0; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 100; transition: background var(--transition), border-color var(--transition); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-name { font-family: 'Source Serif 4', Georgia, serif; font-size: 1.1rem; font-weight: 600; color: var(--text); }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .nav-links a:hover { color: var(--text); }
+    .theme-toggle { background: none; border: none; cursor: pointer; padding: 0.25rem; color: var(--text-muted); font-size: 1.1rem; transition: color var(--transition); }
+    .theme-toggle:hover { color: var(--text); }
+    main { max-width: 800px; margin: 0 auto; padding: 6rem 2rem 4rem; }
+    section { margin-bottom: 3rem; }
+    .intro { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: start; }
+    .photo { width: 200px; height: 200px; border-radius: 8px; object-fit: cover; background: var(--bg-alt); }
+    .bio h1 { font-family: 'Source Serif 4', Georgia, serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .bio p { color: var(--text-muted); margin-bottom: 1rem; font-size: 0.95rem; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-size: 0.9rem; }
+    .contact-links a { display: flex; align-items: center; gap: 0.35rem; }
+    .section-header { font-family: 'Source Serif 4', Georgia, serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    .section-header .toggle { font-size: 1.25rem; color: var(--text-muted); font-weight: 400; transition: transform var(--transition); }
+    .section-header.collapsed .toggle { transform: rotate(0deg); }
+    .section-header:not(.collapsed) .toggle { transform: rotate(45deg); }
+    .section-content { overflow: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; }
+    .section-content.hidden { max-height: 0; opacity: 0; }
+    .news-table { width: 100%; }
+    .news-row { display: grid; grid-template-columns: 90px 1fr; gap: 1rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    .news-row:last-child { border-bottom: none; }
+    .news-date { color: var(--text-muted); font-size: 0.85rem; }
+    .news-content { color: var(--text); }
+    .news-content em { font-style: italic; }
+    .research-item { padding: 1rem 0; border-bottom: 1px solid var(--border); }
+    .research-item:last-child { border-bottom: none; }
+    .research-title { font-weight: 600; margin-bottom: 0.35rem; }
+    .research-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .research-links { display: flex; gap: 1rem; font-size: 0.85rem; }
+    footer { max-width: 800px; margin: 0 auto; padding: 2rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); }
     @media (max-width: 600px) {
-      .intro {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .photo {
-        margin: 0 auto;
-      }
-
-      .contact-links {
-        justify-content: center;
-      }
-
-      .nav-inner {
-        padding: 0.75rem 1rem;
-      }
-
-      .nav-links {
-        gap: 1rem;
-      }
-
-      .nav-links a {
-        font-size: 0.8rem;
-      }
-
-      main {
-        padding: 5rem 1.25rem 3rem;
-      }
-
-      .news-row {
-        grid-template-columns: 1fr;
-        gap: 0.25rem;
-      }
+      .intro { grid-template-columns: 1fr; text-align: center; }
+      .photo { margin: 0 auto; }
+      .contact-links { justify-content: center; }
+      .nav-inner { padding: 0.75rem 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.8rem; }
+      main { padding: 5rem 1.25rem 3rem; }
+      .news-row { grid-template-columns: 1fr; gap: 0.25rem; }
     }
   </style>
 </head>
@@ -321,15 +90,12 @@
       </div>
     </div>
   </nav>
-
   <main>
     <section id="home" class="intro">
       <img src="photo1.jpg" alt="Harrison E. Katz" class="photo" id="profile-photo">
       <div class="bio">
         <h1>Welcome!</h1>
-        <p>
-          I lead <strong>Forecasting Data Science</strong> at <strong>Airbnb</strong>. My research focuses on Bayesian methods for compositional and hierarchical time series—coherence by construction, empirical calibration, open code. Ph.D. in Statistics from <strong>UCLA</strong>.
-        </p>
+        <p>I lead <strong>Forecasting Data Science</strong> at <strong>Airbnb</strong>. My research focuses on Bayesian methods for compositional and hierarchical time series—coherence by construction, empirical calibration, open code. Ph.D. in Statistics from <strong>UCLA</strong>.</p>
         <div class="contact-links">
           <a href="mailto:harrison.katz@airbnb.com">✉ Email</a>
           <a href="https://scholar.google.com/citations?user=0_TiSfYAAAAJ&hl=en" target="_blank">📚 Scholar</a>
@@ -338,205 +104,46 @@
         </div>
       </div>
     </section>
-
     <section id="news">
-      <h2 class="section-header">
-        News
-        <span class="toggle">+</span>
-      </h2>
+      <h2 class="section-header">News<span class="toggle">+</span></h2>
       <div class="section-content">
         <div class="news-table">
-          <div class="news-row">
-            <span class="news-date">Nov 2025</span>
-            <span class="news-content">New note on translating "Lead times in flux" into an R handbook with code (<a href="https://arxiv.org/abs/2511.12763">link</a>).</span>
-          </div>
-          <div class="news-row">
-            <span class="news-date">Nov 2025</span>
-            <span class="news-content">New arXiv preprint: <em>Centered MA Dirichlet ARMA for Financial Compositions</em> (<a href="https://arxiv.org/abs/2510.18903">link</a>).</span>
-          </div>
-          <div class="news-row">
-            <span class="news-date">Oct 2025</span>
-            <span class="news-content">Paper with Thomas Maierhofer on renewable energy mix published in <em>Renewable Energy Forecasting</em> (<a href="https://www.mdpi.com/2571-9394/7/4/62">link</a>).</span>
-          </div>
-          <div class="news-row">
-            <span class="news-date">Sep 2025</span>
-            <span class="news-content">Paper with Erica Savage on Airbnb trip length distributions published in <em>MDPI: Tourism &amp; Hospitality</em> (<a href="https://www.mdpi.com/2673-5768/6/4/182">link</a>).</span>
-          </div>
-          <div class="news-row">
-            <span class="news-date">Jun 2025</span>
-            <span class="news-content">Paper with Liz Medina and Rob Weiss on shrinkage priors for B-DARMA published in <em>MDPI: Forecasting</em> (<a href="https://www.mdpi.com/2571-9394/7/3/32">link</a>).</span>
-          </div>
+          <div class="news-row"><span class="news-date">Nov 2025</span><span class="news-content">New note on translating "Lead times in flux" into an R handbook with code (<a href="https://arxiv.org/abs/2511.12763">link</a>).</span></div>
+          <div class="news-row"><span class="news-date">Nov 2025</span><span class="news-content">New arXiv preprint: <em>Centered MA Dirichlet ARMA for Financial Compositions</em> (<a href="https://arxiv.org/abs/2510.18903">link</a>).</span></div>
+          <div class="news-row"><span class="news-date">Oct 2025</span><span class="news-content">Paper with Thomas Maierhofer on renewable energy mix published in <em>Renewable Energy Forecasting</em> (<a href="https://www.mdpi.com/2571-9394/7/4/62">link</a>).</span></div>
+          <div class="news-row"><span class="news-date">Sep 2025</span><span class="news-content">Paper with Erica Savage on Airbnb trip length distributions published in <em>MDPI: Tourism &amp; Hospitality</em> (<a href="https://www.mdpi.com/2673-5768/6/4/182">link</a>).</span></div>
+          <div class="news-row"><span class="news-date">Jun 2025</span><span class="news-content">Paper with Liz Medina and Rob Weiss on shrinkage priors for B-DARMA published in <em>MDPI: Forecasting</em> (<a href="https://www.mdpi.com/2571-9394/7/3/32">link</a>).</span></div>
         </div>
       </div>
     </section>
-
     <section id="research">
-      <h2 class="section-header">
-        Research
-        <span class="toggle">+</span>
-      </h2>
+      <h2 class="section-header">Research<span class="toggle">+</span></h2>
       <div class="section-content">
         <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Most of my work falls into three areas: allocation forecasting, delay-aware evaluation, and high-dimensional pooling.</p>
-        
         <h3 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 1.5rem 0 1rem;">Bayesian Compositional Methods</h3>
-        
-        <div class="research-item">
-          <div class="research-title">A Bayesian Dirichlet Auto-Regressive Moving Average Model for Forecasting Lead Times</div>
-          <div class="research-desc">With Kai Brusch &amp; Robert Weiss. <em>International Journal of Forecasting</em>, 2024.</div>
-          <div class="research-links">
-            <a href="https://www.sciencedirect.com/science/article/pii/S0169207024000049">Article</a>
-            <a href="https://arxiv.org/abs/2303.17478">arXiv</a>
-            <a href="https://github.com/harrisonekatz/B-DARMA-paper">Code</a>
-          </div>
-        </div>
-        <div class="research-item">
-          <div class="research-title">A Bayesian Dirichlet Auto-Regressive Conditional Heteroskedasticity Model for Forecasting Currency Shares</div>
-          <div class="research-desc">With Robert Weiss. Under review, 2025.</div>
-          <div class="research-links">
-            <a href="https://arxiv.org/abs/2507.14132">arXiv</a>
-            <a href="https://github.com/harrisonekatz/B-DARCH-paper">Code</a>
-          </div>
-        </div>
-        <div class="research-item">
-          <div class="research-title">Centered MA Dirichlet ARMA for Financial Compositions</div>
-          <div class="research-desc">A minimal centering fix improves density forecasts on H.8 bank-asset shares. Working paper, 2025.</div>
-          <div class="research-links">
-            <a href="https://arxiv.org/abs/2510.18903">arXiv</a>
-            <a href="https://github.com/harrisonekatz/centered-DARMA">Code</a>
-          </div>
-        </div>
-        <div class="research-item">
-          <div class="research-title">Sensitivity Analysis of Priors in the Bayesian Dirichlet Auto-Regressive Moving Average Model</div>
-          <div class="research-desc">With Liz Medina &amp; Robert Weiss. <em>MDPI: Forecasting</em>, 2025.</div>
-          <div class="research-links">
-            <a href="https://www.mdpi.com/2571-9394/7/3/32">Article</a>
-            <a href="https://arxiv.org/abs/2506.13973">arXiv</a>
-            <a href="https://github.com/harrisonekatz/bdarma_sensitivity_analysis">Code</a>
-          </div>
-        </div>
-        <div class="research-item">
-          <div class="research-title">Forecasting the U.S. Renewable-Energy Mix with a Bayesian Dirichlet ARMA Model</div>
-          <div class="research-desc">With Thomas Maierhofer. <em>Renewable Energy Forecasting: Innovations and Breakthroughs</em>, 2025.</div>
-          <div class="research-links">
-            <a href="https://www.mdpi.com/2571-9394/7/4/62">Article</a>
-            <a href="https://arxiv.org/abs/2507.04087">arXiv</a>
-            <a href="https://github.com/harrisonekatz/energy-compositions">Code</a>
-          </div>
-        </div>
-        
+        <div class="research-item"><div class="research-title">A Bayesian Dirichlet Auto-Regressive Moving Average Model for Forecasting Lead Times</div><div class="research-desc">With Kai Brusch &amp; Robert Weiss. <em>International Journal of Forecasting</em>, 2024.</div><div class="research-links"><a href="https://www.sciencedirect.com/science/article/pii/S0169207024000049">Article</a><a href="https://arxiv.org/abs/2303.17478">arXiv</a><a href="https://github.com/harrisonekatz/B-DARMA-paper">Code</a></div></div>
+        <div class="research-item"><div class="research-title">A Bayesian Dirichlet Auto-Regressive Conditional Heteroskedasticity Model for Forecasting Currency Shares</div><div class="research-desc">With Robert Weiss. Under review, 2025.</div><div class="research-links"><a href="https://arxiv.org/abs/2507.14132">arXiv</a><a href="https://github.com/harrisonekatz/B-DARCH-paper">Code</a></div></div>
+        <div class="research-item"><div class="research-title">Centered MA Dirichlet ARMA for Financial Compositions</div><div class="research-desc">A minimal centering fix improves density forecasts on H.8 bank-asset shares. Working paper, 2025.</div><div class="research-links"><a href="https://arxiv.org/abs/2510.18903">arXiv</a><a href="https://github.com/harrisonekatz/centered-DARMA">Code</a></div></div>
+        <div class="research-item"><div class="research-title">Sensitivity Analysis of Priors in the Bayesian Dirichlet Auto-Regressive Moving Average Model</div><div class="research-desc">With Liz Medina &amp; Robert Weiss. <em>MDPI: Forecasting</em>, 2025.</div><div class="research-links"><a href="https://www.mdpi.com/2571-9394/7/3/32">Article</a><a href="https://arxiv.org/abs/2506.13973">arXiv</a><a href="https://github.com/harrisonekatz/bdarma_sensitivity_analysis">Code</a></div></div>
+        <div class="research-item"><div class="research-title">Forecasting the U.S. Renewable-Energy Mix with a Bayesian Dirichlet ARMA Model</div><div class="research-desc">With Thomas Maierhofer. <em>Renewable Energy Forecasting: Innovations and Breakthroughs</em>, 2025.</div><div class="research-links"><a href="https://www.mdpi.com/2571-9394/7/4/62">Article</a><a href="https://arxiv.org/abs/2507.04087">arXiv</a><a href="https://github.com/harrisonekatz/energy-compositions">Code</a></div></div>
         <h3 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 1.5rem 0 1rem;">High-Dimensional Shrinkage</h3>
-        
-        <div class="research-item">
-          <div class="research-title">Bayesian Shrinkage in High-Dimensional VAR Models: A Comparative Study</div>
-          <div class="research-desc">With Robert Weiss. <em>International Journal of Statistics and Probability</em>, 2025.</div>
-          <div class="research-links">
-            <a href="https://ccsenet.org/journal/index.php/ijsp/article/view/0/52129">Article</a>
-            <a href="https://arxiv.org/abs/2504.05489">arXiv</a>
-            <a href="https://github.com/harrisonekatz/BayesVAR-SimStudy">Code</a>
-          </div>
-        </div>
-        
+        <div class="research-item"><div class="research-title">Bayesian Shrinkage in High-Dimensional VAR Models: A Comparative Study</div><div class="research-desc">With Robert Weiss. <em>International Journal of Statistics and Probability</em>, 2025.</div><div class="research-links"><a href="https://ccsenet.org/journal/index.php/ijsp/article/view/0/52129">Article</a><a href="https://arxiv.org/abs/2504.05489">arXiv</a><a href="https://github.com/harrisonekatz/BayesVAR-SimStudy">Code</a></div></div>
         <h3 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 1.5rem 0 1rem;">Delay-Aware Forecasting</h3>
-        
-        <div class="research-item">
-          <div class="research-title">Two-Part Forecasting for Time-Shifted Metrics</div>
-          <div class="research-desc">With Erica Savage &amp; Kai Brusch. <em>Foresight: The International Journal of Applied Forecasting</em>, 2025.</div>
-          <div class="research-links">
-            <a href="https://arxiv.org/abs/2504.11194">arXiv</a>
-            <a href="https://github.com/harrisonekatz/consistent_forecasting_bdarma_paper">Code</a>
-          </div>
-        </div>
-        <div class="research-item">
-          <div class="research-title">Impact by Design: Translating "Lead Times in Flux" into an R Handbook</div>
-          <div class="research-desc">Monitors full lead-time distributions and turns them into a pickup-risk bound. Note, 2025.</div>
-          <div class="research-links">
-            <a href="https://arxiv.org/abs/2511.12763">arXiv</a>
-            <a href="https://github.com/harrisonekatz/leadtimefluxR">Code</a>
-          </div>
-        </div>
-        
+        <div class="research-item"><div class="research-title">Two-Part Forecasting for Time-Shifted Metrics</div><div class="research-desc">With Erica Savage &amp; Kai Brusch. <em>Foresight: The International Journal of Applied Forecasting</em>, 2025.</div><div class="research-links"><a href="https://arxiv.org/abs/2504.11194">arXiv</a><a href="https://github.com/harrisonekatz/consistent_forecasting_bdarma_paper">Code</a></div></div>
+        <div class="research-item"><div class="research-title">Impact by Design: Translating "Lead Times in Flux" into an R Handbook</div><div class="research-desc">Monitors full lead-time distributions and turns them into a pickup-risk bound. Note, 2025.</div><div class="research-links"><a href="https://arxiv.org/abs/2511.12763">arXiv</a><a href="https://github.com/harrisonekatz/leadtimefluxR">Code</a></div></div>
         <h3 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 1.5rem 0 1rem;">Tourism &amp; Hospitality</h3>
-        
-        <div class="research-item">
-          <div class="research-title">Lead Times in Flux: Analyzing Airbnb Booking Dynamics During Global Upheavals (2018–2022)</div>
-          <div class="research-desc">With Erica Savage &amp; Peter Coles. <em>Annals of Tourism Research: Empirical Insights</em>, 2025.</div>
-          <div class="research-links">
-            <a href="https://www.sciencedirect.com/science/article/pii/S2666957925000205">Article</a>
-          </div>
-        </div>
-        <div class="research-item">
-          <div class="research-title">Slomads Rising: Structural Shifts in U.S. Airbnb Stay Lengths During and After the Pandemic (2019–2024)</div>
-          <div class="research-desc">With Erica Savage. <em>MDPI: Tourism &amp; Hospitality</em>, 2025.</div>
-          <div class="research-links">
-            <a href="https://www.mdpi.com/2673-5768/6/4/182">Article</a>
-          </div>
-        </div>
+        <div class="research-item"><div class="research-title">Lead Times in Flux: Analyzing Airbnb Booking Dynamics During Global Upheavals (2018–2022)</div><div class="research-desc">With Erica Savage &amp; Peter Coles. <em>Annals of Tourism Research: Empirical Insights</em>, 2025.</div><div class="research-links"><a href="https://www.sciencedirect.com/science/article/pii/S2666957925000205">Article</a></div></div>
+        <div class="research-item"><div class="research-title">Slomads Rising: Structural Shifts in U.S. Airbnb Stay Lengths During and After the Pandemic (2019–2024)</div><div class="research-desc">With Erica Savage. <em>MDPI: Tourism &amp; Hospitality</em>, 2025.</div><div class="research-links"><a href="https://www.mdpi.com/2673-5768/6/4/182">Article</a></div></div>
       </div>
     </section>
   </main>
-
-  <footer>
-    All views are my own. Last updated January 2026.
-  </footer>
-
+  <footer>All views are my own. Last updated January 2026.</footer>
   <script>
-    // Random photo selection
-    (function() {
-      var photos = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 'photo5.jpg', 'photo6.jpg'];
-      var randomIndex = Math.floor(Math.random() * photos.length);
-      var img = document.getElementById('profile-photo');
-      if (img) {
-        img.src = photos[randomIndex];
-      }
-    })();
-
-    // Theme toggle
-    var toggle = document.querySelector('.theme-toggle');
-    var html = document.documentElement;
-    
-    var savedTheme = localStorage.getItem('theme');
-    var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
-      html.setAttribute('data-theme', 'dark');
-      toggle.textContent = '☾';
-    }
-    
-    toggle.addEventListener('click', function() {
-      var isDark = html.getAttribute('data-theme') === 'dark';
-      if (isDark) {
-        html.removeAttribute('data-theme');
-        toggle.textContent = '☀';
-        localStorage.setItem('theme', 'light');
-      } else {
-        html.setAttribute('data-theme', 'dark');
-        toggle.textContent = '☾';
-        localStorage.setItem('theme', 'dark');
-      }
-    });
-
-    // Collapsible sections
-    document.querySelectorAll('.section-header').forEach(function(header) {
-      header.addEventListener('click', function() {
-        var content = header.nextElementSibling;
-        var isHidden = content.classList.contains('hidden');
-        
-        if (isHidden) {
-          content.classList.remove('hidden');
-          content.style.maxHeight = content.scrollHeight + 'px';
-          header.classList.remove('collapsed');
-        } else {
-          content.classList.add('hidden');
-          content.style.maxHeight = '0';
-          header.classList.add('collapsed');
-        }
-      });
-    });
-
-    // Initialize sections as expanded
-    document.querySelectorAll('.section-content').forEach(function(content) {
-      content.style.maxHeight = content.scrollHeight + 'px';
-    });
+    (function(){var photos=['photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg','photo5.jpg','photo6.jpg'];var img=document.getElementById('profile-photo');if(img){img.src=photos[Math.floor(Math.random()*photos.length)];}})();
+    var toggle=document.querySelector('.theme-toggle');var html=document.documentElement;var savedTheme=localStorage.getItem('theme');var systemDark=window.matchMedia('(prefers-color-scheme: dark)').matches;if(savedTheme==='dark'||(!savedTheme&&systemDark)){html.setAttribute('data-theme','dark');toggle.textContent='☾';}
+    toggle.addEventListener('click',function(){var isDark=html.getAttribute('data-theme')==='dark';if(isDark){html.removeAttribute('data-theme');toggle.textContent='☀';localStorage.setItem('theme','light');}else{html.setAttribute('data-theme','dark');toggle.textContent='☾';localStorage.setItem('theme','dark');}});
+    document.querySelectorAll('.section-header').forEach(function(header){header.addEventListener('click',function(){var content=header.nextElementSibling;var isHidden=content.classList.contains('hidden');if(isHidden){content.classList.remove('hidden');content.style.maxHeight=content.scrollHeight+'px';header.classList.remove('collapsed');}else{content.classList.add('hidden');content.style.maxHeight='0';header.classList.add('collapsed');}});});
+    document.querySelectorAll('.section-content').forEach(function(content){content.style.maxHeight=content.scrollHeight+'px';});
   </script>
 </body>
 </html>
