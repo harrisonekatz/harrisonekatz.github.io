@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes – Harrison E. Katz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fafaf9;
+      --bg-alt: #f5f5f4;
+      --text: #1c1917;
+      --text-muted: #57534e;
+      --accent: #0c4a6e;
+      --accent-hover: #075985;
+      --border: #e7e5e4;
+      --transition: 0.2s ease;
+    }
+    [data-theme="dark"] {
+      --bg: #1c1917;
+      --bg-alt: #292524;
+      --text: #fafaf9;
+      --text-muted: #a8a29e;
+      --accent: #7dd3fc;
+      --accent-hover: #bae6fd;
+      --border: #44403c;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Source Sans 3', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; transition: background var(--transition), color var(--transition); }
+    a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--accent-hover); }
+    nav { position: fixed; top: 0; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); z-index: 100; transition: background var(--transition), border-color var(--transition); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-name { font-family: 'Source Serif 4', Georgia, serif; font-size: 1.1rem; font-weight: 600; color: var(--text); }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--text); }
+    .theme-toggle { background: none; border: none; cursor: pointer; padding: 0.25rem; color: var(--text-muted); font-size: 1.1rem; transition: color var(--transition); }
+    .theme-toggle:hover { color: var(--text); }
+    main { max-width: 800px; margin: 0 auto; padding: 6rem 2rem 4rem; }
+    .page-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .page-intro { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
+    .note-entry { padding: 2rem 0; border-bottom: 1px solid var(--border); }
+    .note-entry:first-of-type { padding-top: 0; }
+    .note-entry:last-of-type { border-bottom: none; }
+    .note-entry-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 1.15rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .note-entry-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem; }
+    .note-entry-links { display: flex; gap: 1rem; font-size: 0.85rem; margin-bottom: 1.25rem; }
+    .note-body p { font-size: 0.93rem; color: var(--text); margin-bottom: 1rem; line-height: 1.7; }
+    .note-body h3 { font-size: 1rem; font-weight: 600; margin: 1.75rem 0 0.5rem; }
+    .note-body table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 1rem 0; }
+    .note-body th, .note-body td { padding: 0.4rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+    .note-body th { font-weight: 600; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; }
+    .note-body .note-footer { font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-top: 1.5rem; }
+    .note-body .references { font-size: 0.85rem; color: var(--text-muted); }
+    .note-body .references br { margin-bottom: 0.15rem; }
+    .note-separator { height: 0; border: none; border-top: 1px solid var(--border); }
+    footer { max-width: 800px; margin: 0 auto; padding: 2rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); }
+    @media (max-width: 600px) {
+      .nav-inner { padding: 0.75rem 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.8rem; }
+      main { padding: 5rem 1.25rem 3rem; }
+      .note-body table { font-size: 0.75rem; }
+      .note-body th, .note-body td { padding: 0.3rem 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-name">Harrison E. Katz</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="notes.html" class="active">Notes</a>
+        <a href="index.html#research">Research</a>
+        <a href="cv.pdf" target="_blank">CV</a>
+        <button class="theme-toggle" aria-label="Toggle theme">☀</button>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <h1 class="page-title">Notes</h1>
+    <p class="page-intro">Short pieces on forecasting methods, production systems, and lessons from running models at scale. Some are original; others first appeared in <a href="https://foresight.forecasters.org/">Foresight</a> and are reposted here with permission. For peer-reviewed work, see <a href="index.html#research">Research</a>.</p>
+
+    <!-- === NOTE 1: Compositional vs Bottom-Up === -->
+    <div class="note-entry" id="compositional-vs-bottom-up">
+      <div class="note-entry-title">Three cases where compositional modeling beats bottom-up aggregation</div>
+      <div class="note-entry-meta">January 2026</div>
+      <div class="note-body">
+        <p>If you forecast a total and its parts separately, the parts won't add up to the total. This is well known. Most production systems ignore it anyway. They forecast each component independently, reconcile after the fact, and move on.</p>
+        <p>That is often fine. Sometimes it is not. Here are three situations where I have found it worth building coherence into the model directly rather than patching it downstream.</p>
+
+        <h3>1. When the total is more predictable than the parts</h3>
+        <p>Revenue mix by currency is a clean example. Total revenue in USD has strong seasonal patterns and relatively stable trends. The share attributable to EUR, GBP, or AUD individually is noisier. Exchange rate movements and regional booking behavior are hard to forecast well. If you forecast each currency's revenue independently, you get reasonable point estimates that sum to something different from your total revenue forecast. Reconciliation fixes the math but introduces artifacts. The adjusted shares inherit noise from both the component and total forecasts.</p>
+        <p>A compositional model (Dirichlet, logistic-normal, or something in that family) forecasts the shares directly on the simplex, then multiplies by a separate total forecast. The shares sum to one by construction. No reconciliation needed. The gain is that downstream consumers (treasury, FP&amp;A) get numbers that are internally consistent without a post-processing step that nobody fully understands.</p>
+
+        <h3>2. When substitution effects dominate</h3>
+        <p>Consider a platform where customers choose among product categories and the total number of transactions is roughly fixed in the short run. A spike in Category A usually means a dip in Category B. Independent models do not capture this. They can both go up simultaneously, producing a total that overshoots reality.</p>
+        <p>Compositional models handle substitution naturally because the shares are jointly modeled. If one share increases, the others must decrease. This is not a side effect. It is the point. The constraint encodes the economic reality that these categories compete for the same pool of transactions.</p>
+        <p>Bottom-up aggregation can approximate this with a reconciliation step, but the reconciliation is doing the work that the compositional model does by construction. And reconciliation methods (MinT, OLS, etc.) optimize a statistical criterion, not the structural constraint. They get you close, but "close" means your shares sum to 1.003 or 0.997, and someone in finance will ask why.</p>
+
+        <h3>3. When you need calibrated prediction intervals for shares</h3>
+        <p>This is where the gap is widest. Bottom-up forecasting with reconciliation gives you point estimates that (roughly) cohere. Getting coherent prediction intervals is harder. You need the joint distribution of all components, including their correlations, to produce intervals for the shares that respect the simplex constraint.</p>
+        <p>A Bayesian compositional model gives you this directly. The posterior predictive distribution lives on the simplex, so any credible interval you compute for a share is automatically bounded between 0 and 1, and the intervals for all shares are jointly consistent. Try getting that from independent ARIMA models with ad hoc reconciliation.</p>
+
+        <h3>When to skip it</h3>
+        <p>If your components are weakly correlated, you do not care about the shares (only the levels), and nobody downstream needs the parts to add up exactly, independent forecasting with reconciliation is simpler and probably sufficient. The setup cost of a compositional model is not zero. You need priors on the simplex, a sampler that handles the constraint, and stakeholders who understand what "Dirichlet" means or at least trust that it works.</p>
+        <p>The decision rule I use: if someone will divide your forecasts to compute a share and then make a decision based on that share, model the shares directly.</p>
+        <p class="note-footer">I maintain an R implementation of the B-DARMA model <a href="https://github.com/harrisonekatz/B-DARMA-paper">on GitHub</a>. Methodological details are in <a href="https://www.sciencedirect.com/science/article/pii/S0169207024000049">Katz, Brusch, and Weiss (2024)</a>.</p>
+      </div>
+    </div>
+
+    <!-- === NOTE 2: Foresight Repost === -->
+    <div class="note-entry" id="two-part-forecasting">
+      <div class="note-entry-title">Two-Part Forecasting for Time-Shifted Metrics</div>
+      <div class="note-entry-meta">With Erica Savage &amp; Kai Thomas Brusch. Originally published in <a href="https://foresight.forecasters.org/"><em>Foresight</em></a>, Q2 2025.</div>
+      <div class="note-entry-links">
+        <a href="https://arxiv.org/abs/2504.11194">arXiv preprint</a>
+        <a href="https://github.com/harrisonekatz/consistent_forecasting_bdarma_paper">Code &amp; Stan models</a>
+        <a href="https://github.com/harrisonekatz/consistent_forecasting_bdarma_paper/blob/main/supplementary_material_time_shifted.pdf">Supplementary material</a>
+      </div>
+      <div class="note-body">
+        <h3>The problem</h3>
+        <p>Many sectors face a version of the same forecasting challenge: the date something is recorded does not match the date it happens. A booking is made on January 5 for a trip starting February 10. A purchase order is placed on Monday for delivery on Friday. A trade is executed today for settlement in two days.</p>
+        <p>Traditional forecasting approaches operate on a single time axis. They struggle to track how a metric transitions from one origin to another. Hierarchical methods reconcile forecasts at different organizational levels but do not handle the two-axis structure. Temporal aggregation scales forecasts up or down in granularity but does not distribute one metric across another time dimension.</p>
+        <p>We introduce a two-part methodology that treats forecasting as a time-shift operator. Part 1 projects total demand on the recording axis. Part 2 translates those forecasts to the consumption axis using a compositional time series model.</p>
+
+        <h3>Methodology</h3>
+        <p><strong>Part 1: Total bookings.</strong> A univariate time series model (we used Prophet, but any reasonable method works) forecasts total daily bookings on the booking-date axis. This gives you projected volume by day, ignoring when those bookings will actually be consumed.</p>
+        <p><strong>Part 2: Lead-time allocation.</strong> B-DARMA models the proportions of bookings falling into each lead-time bucket (0 months out, 1 month out, ..., 12 months out) as a compositional time series. The model captures how the mix of last-minute versus long-term bookings evolves over time, with monthly seasonality via Fourier terms and a linear trend for shifting booking behavior.</p>
+        <p><strong>Combining the parts.</strong> Multiply each month's total bookings by the corresponding lead-time proportions, shift forward by the appropriate offset, and sum across all booking months that align with a given trip month. The result is a forecast on the trip-date axis derived from the booking-date axis.</p>
+        <p>Full mathematical derivations, including the additive log-ratio transformations, are in the <a href="https://github.com/harrisonekatz/consistent_forecasting_bdarma_paper/blob/main/supplementary_material_time_shifted.pdf">supplementary material</a>. Technical details on the B-DARMA specification are in <a href="https://www.sciencedirect.com/science/article/pii/S0169207024000049">Katz, Brusch, and Weiss (2024)</a>.</p>
+
+        <h3>Data</h3>
+        <p>We used two anonymized Airbnb datasets spanning January 2014 to December 2019 (pre-COVID). City A is a large metropolitan market with strong seasonal variability. City B is a midsized leisure destination with more moderate seasonality. Each dataset contains daily booking counts, trip dates, and lead times in months. We created 13 monthly lead-time buckets (0 to 12). Training period was 2014 through 2018; test period was all of 2019.</p>
+
+        <h3>Results</h3>
+        <p>We benchmarked against a bottom-up Prophet approach: separate univariate Prophet forecasts for each lead-time bucket, summed to get totals.</p>
+        <table>
+          <thead><tr><th>City</th><th>Method</th><th>Booking Date MAE</th><th>Booking Date MAPE</th><th>Lead-Time Mean L1</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td>Two-Part</td><td>5,083</td><td>4.8%</td><td>0.0229</td></tr>
+            <tr><td>A</td><td>Bottom-Up</td><td>5,336</td><td>5.07%</td><td>0.0389</td></tr>
+            <tr><td>B</td><td>Two-Part</td><td>1,406</td><td>3.07%</td><td>0.0300</td></tr>
+            <tr><td>B</td><td>Bottom-Up</td><td>1,455</td><td>3.15%</td><td>0.0499</td></tr>
+          </tbody>
+        </table>
+        <p>The two-part approach outperformed bottom-up Prophet on both axes in both markets. The compositional framework captures cross-bucket correlations that independent univariate forecasts miss. The improvement is most visible in the lead-time distributions: normalized L1 distance drops by roughly 40% in both cities.</p>
+
+        <h3>Why this matters in practice</h3>
+        <p>The modularity is the real advantage. Adjusting total forecasts in response to a macro shock or event does not require refitting the lead-time model. Scenario analysis becomes fast. And for short-horizon forecasting, where some future bookings are already known, existing reservations serve as a baseline while the two-part model projects additional bookings that might still materialize.</p>
+        <p>B-DARMA can also incorporate exogenous covariates on the trip-date side. A Super Bowl indicator or Easter flag can shift proportions in the relevant lead-time bucket, linking trip-date features to booking-date allocations under one framework.</p>
+
+        <h3>Limitations</h3>
+        <p>Splitting the process into two parts may miss interactions between total demand and lead-time behavior that a unified model could capture. B-DARMA assumes strictly positive proportions, so sparse or zero-valued lead-time buckets require care. And if lead times are static or not important to your decision, the added complexity is not justified.</p>
+
+        <h3>References</h3>
+        <p class="references">
+          Aitchison, J. (1986). <em>The Statistical Analysis of Compositional Data.</em> Chapman &amp; Hall.<br>
+          Armstrong, J.S. (2001). Combining Forecasts. In: <em>Principles of Forecasting.</em> Springer.<br>
+          Hyndman, R.J., Ahmed, R.A., Athanasopoulos, G., &amp; Shang, H.L. (2011). Optimal combination forecasts for hierarchical time series. <em>Computational Statistics &amp; Data Analysis</em>, 55(9), 2579-2589.<br>
+          Katz, H., Brusch, K.T., &amp; Weiss, R.E. (2024). A Bayesian Dirichlet auto-regressive moving average model for forecasting lead times. <em>International Journal of Forecasting</em>, 40(4), 1556-1567.<br>
+          Silvestrini, A. &amp; Veredas, D. (2008). Temporal aggregation of univariate and multivariate time series models: A survey. <em>Journal of Economic Surveys</em>, 22(3), 458-497.<br>
+          Taylor, S.J. &amp; Letham, B. (2018). Forecasting at scale. <em>The American Statistician</em>, 72(1), 37-45.<br>
+          Zheng, T. &amp; Chen, R. (2017). Dirichlet ARMA models for compositional time series. <em>Journal of Multivariate Analysis</em>, 158, 31-46.
+        </p>
+        <p class="note-footer">The primary dataset is proprietary. Stan code for the B-DARMA model and supplementary material are available at <a href="https://github.com/harrisonekatz/consistent_forecasting_bdarma_paper">github.com/harrisonekatz/consistent_forecasting_bdarma_paper</a>.</p>
+      </div>
+    </div>
+
+  </main>
+  <footer>All views are my own. Last updated February 2026.</footer>
+  <script>
+    var toggle=document.querySelector('.theme-toggle');var html=document.documentElement;var savedTheme=localStorage.getItem('theme');var systemDark=window.matchMedia('(prefers-color-scheme: dark)').matches;if(savedTheme==='dark'||(!savedTheme&&systemDark)){html.setAttribute('data-theme','dark');toggle.textContent='☾';}
+    toggle.addEventListener('click',function(){var isDark=html.getAttribute('data-theme')==='dark';if(isDark){html.removeAttribute('data-theme');toggle.textContent='☀';localStorage.setItem('theme','light');}else{html.setAttribute('data-theme','dark');toggle.textContent='☾';localStorage.setItem('theme','dark');}});
+  </script>
+</body>
+</html>
