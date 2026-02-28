@@ -66,6 +66,23 @@
     .research-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem; }
     .research-links { display: flex; gap: 1rem; font-size: 0.85rem; }
     footer { max-width: 800px; margin: 0 auto; padding: 2rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); }
+    .notes-index { margin-bottom: 1.5rem; }
+    .notes-index-item { padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    .notes-index-item:last-child { border-bottom: none; }
+    .notes-index-item a { font-weight: 600; }
+    .notes-index-item .notes-meta { color: var(--text-muted); font-size: 0.85rem; }
+    .note-entry { padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+    .note-entry:last-child { border-bottom: none; }
+    .note-entry-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 1.15rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .note-entry-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem; }
+    .note-entry-links { display: flex; gap: 1rem; font-size: 0.85rem; margin-bottom: 1.25rem; }
+    .note-body p { font-size: 0.93rem; color: var(--text); margin-bottom: 1rem; line-height: 1.7; }
+    .note-body h3 { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .note-body table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 1rem 0; }
+    .note-body th, .note-body td { padding: 0.4rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+    .note-body th { font-weight: 600; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; }
+    .note-body em { font-style: italic; }
+    .note-body .note-footer { font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-top: 1.5rem; }
     @media (max-width: 600px) {
       .intro { grid-template-columns: 1fr; text-align: center; }
       .photo { margin: 0 auto; }
@@ -84,6 +101,7 @@
       <a href="#" class="nav-name">Harrison E. Katz</a>
       <div class="nav-links">
         <a href="#home">Home</a>
+        <a href="#notes">Notes</a>
         <a href="#research">Research</a>
         <a href="cv.pdf" target="_blank">CV</a>
         <button class="theme-toggle" aria-label="Toggle theme">☀</button>
@@ -97,7 +115,7 @@
         <h1>Welcome!</h1>
         <p>I lead <strong>Finance Data Science & Strategy </strong> at <strong>Airbnb</strong>. My research focuses on Bayesian methods for compositional and hierarchical time series—coherence by construction, empirical calibration, open code. Ph.D. in Statistics from <strong>UCLA</strong>.</p>
         <div class="contact-links">
-          <a href="mailto:harrison.katz@airbnb.com">✉ Email</a>
+          <a href="/cdn-cgi/l/email-protection#5830392a2a312b37367633392c221839312a3a363a763b3735">✉ Email</a>
           <a href="https://scholar.google.com/citations?user=0_TiSfYAAAAJ&hl=en" target="_blank">📚 Scholar</a>
           <a href="https://github.com/harrisonekatz" target="_blank">💻 GitHub</a>
           <a href="https://linkedin.com/in/harrisonekatz" target="_blank">🔗 LinkedIn</a>
@@ -114,6 +132,99 @@
           <div class="news-row"><span class="news-date">Nov 2025</span><span class="news-content">New note on translating "Lead times in flux" into an R handbook with code (<a href="https://arxiv.org/abs/2511.12763">link</a>).</span></div>
           <div class="news-row"><span class="news-date">Oct 2025</span><span class="news-content">Paper with Thomas Maierhofer on renewable energy mix published in <em>Renewable Energy Forecasting</em> (<a href="https://www.mdpi.com/2571-9394/7/4/62">link</a>).</span></div>
         </div>
+      </div>
+    </section>
+    <section id="notes">
+      <h2 class="section-header">Notes<span class="toggle">+</span></h2>
+      <div class="section-content">
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Short pieces on forecasting methods, production systems, and lessons from running models at scale. Some are original; others first appeared in <a href="https://foresight.forecasters.org/">Foresight</a> and are reposted here with permission. For peer-reviewed work, see <a href="#research">Research</a>.</p>
+
+        <!-- === NOTE 1: Compositional vs Bottom-Up === -->
+        <div class="note-entry" id="note-compositional">
+          <div class="note-entry-title">Three cases where compositional modeling beats bottom-up aggregation</div>
+          <div class="note-entry-meta">January 2026</div>
+          <div class="note-body">
+            <p>If you forecast a total and its parts separately, the parts won't add up to the total. This is well known. Most production systems ignore it anyway. They forecast each component independently, reconcile after the fact, and move on.</p>
+            <p>That is often fine. Sometimes it is not. Here are three situations where I have found it worth building coherence into the model directly rather than patching it downstream.</p>
+
+            <h3>1. When the total is more predictable than the parts</h3>
+            <p>Revenue mix by currency is a clean example. Total revenue in USD has strong seasonal patterns and relatively stable trends. The share attributable to EUR, GBP, or AUD individually is noisier. Exchange rate movements and regional booking behavior are hard to forecast well. If you forecast each currency's revenue independently, you get reasonable point estimates that sum to something different from your total revenue forecast. Reconciliation fixes the math but introduces artifacts. The adjusted shares inherit noise from both the component and total forecasts.</p>
+            <p>A compositional model (Dirichlet, logistic-normal, or something in that family) forecasts the shares directly on the simplex, then multiplies by a separate total forecast. The shares sum to one by construction. No reconciliation needed. The gain is that downstream consumers (treasury, FP&amp;A) get numbers that are internally consistent without a post-processing step that nobody fully understands.</p>
+
+            <h3>2. When substitution effects dominate</h3>
+            <p>Consider a platform where customers choose among product categories and the total number of transactions is roughly fixed in the short run. A spike in Category A usually means a dip in Category B. Independent models do not capture this. They can both go up simultaneously, producing a total that overshoots reality.</p>
+            <p>Compositional models handle substitution naturally because the shares are jointly modeled. If one share increases, the others must decrease. This is not a side effect. It is the point. The constraint encodes the economic reality that these categories compete for the same pool of transactions.</p>
+            <p>Bottom-up aggregation can approximate this with a reconciliation step, but the reconciliation is doing the work that the compositional model does by construction. And reconciliation methods (MinT, OLS, etc.) optimize a statistical criterion, not the structural constraint. They get you close, but "close" means your shares sum to 1.003 or 0.997, and someone in finance will ask why.</p>
+
+            <h3>3. When you need calibrated prediction intervals for shares</h3>
+            <p>This is where the gap is widest. Bottom-up forecasting with reconciliation gives you point estimates that (roughly) cohere. Getting coherent prediction intervals is harder. You need the joint distribution of all components, including their correlations, to produce intervals for the shares that respect the simplex constraint.</p>
+            <p>A Bayesian compositional model gives you this directly. The posterior predictive distribution lives on the simplex, so any credible interval you compute for a share is automatically bounded between 0 and 1, and the intervals for all shares are jointly consistent. Try getting that from independent ARIMA models with ad hoc reconciliation.</p>
+
+            <h3>When to skip it</h3>
+            <p>If your components are weakly correlated, you do not care about the shares (only the levels), and nobody downstream needs the parts to add up exactly, independent forecasting with reconciliation is simpler and probably sufficient. The setup cost of a compositional model is not zero. You need priors on the simplex, a sampler that handles the constraint, and stakeholders who understand what "Dirichlet" means or at least trust that it works.</p>
+            <p>The decision rule I use: if someone will divide your forecasts to compute a share and then make a decision based on that share, model the shares directly.</p>
+            <p class="note-footer">I maintain an R implementation of the B-DARMA model <a href="https://github.com/harrisonekatz/B-DARMA-paper">on GitHub</a>. Methodological details are in <a href="https://www.sciencedirect.com/science/article/pii/S0169207024000049">Katz, Brusch, and Weiss (2024)</a>.</p>
+          </div>
+        </div>
+
+        <!-- === NOTE 2: Foresight Repost === -->
+        <div class="note-entry" id="note-two-part">
+          <div class="note-entry-title">Two-Part Forecasting for Time-Shifted Metrics</div>
+          <div class="note-entry-meta">With Erica Savage &amp; Kai Thomas Brusch. Originally published in <a href="https://forecasters.org/foresight/"><em>Foresight</em></a>, Q2 2025.</div>
+          <div class="note-entry-links">
+            <a href="https://arxiv.org/abs/2504.11194">arXiv preprint</a>
+            <a href="https://github.com/harrisonekatz/consistent_forecasting_bdarma_paper">Code &amp; Stan models</a>
+            <a href="https://github.com/harrisonekatz/consistent_forecasting_bdarma_paper/blob/main/supplementary_material_time_shifted.pdf">Supplementary material</a>
+          </div>
+          <div class="note-body">
+            <h3>The problem</h3>
+            <p>Many sectors face a version of the same forecasting challenge: the date something is recorded does not match the date it happens. A booking is made on January 5 for a trip starting February 10. A purchase order is placed on Monday for delivery on Friday. A trade is executed today for settlement in two days.</p>
+            <p>Traditional forecasting approaches operate on a single time axis. They struggle to track how a metric transitions from one origin to another. Hierarchical methods reconcile forecasts at different organizational levels but do not handle the two-axis structure. Temporal aggregation scales forecasts up or down in granularity but does not distribute one metric across another time dimension.</p>
+            <p>We introduce a two-part methodology that treats forecasting as a time-shift operator. Part 1 projects total demand on the recording axis. Part 2 translates those forecasts to the consumption axis using a compositional time series model.</p>
+
+            <h3>Methodology</h3>
+            <p><strong>Part 1: Total bookings.</strong> A univariate time series model (we used Prophet, but any reasonable method works) forecasts total daily bookings on the booking-date axis. This gives you projected volume by day, ignoring when those bookings will actually be consumed.</p>
+            <p><strong>Part 2: Lead-time allocation.</strong> B-DARMA models the proportions of bookings falling into each lead-time bucket (0 months out, 1 month out, ..., 12 months out) as a compositional time series. The model captures how the mix of last-minute versus long-term bookings evolves over time, with monthly seasonality via Fourier terms and a linear trend for shifting booking behavior.</p>
+            <p><strong>Combining the parts.</strong> Multiply each month's total bookings by the corresponding lead-time proportions, shift forward by the appropriate offset, and sum across all booking months that align with a given trip month. The result is a forecast on the trip-date axis derived from the booking-date axis.</p>
+            <p>Full mathematical derivations, including the additive log-ratio transformations, are in the <a href="https://github.com/harrisonekatz/consistent_forecasting_bdarma_paper/blob/main/supplementary_material_time_shifted.pdf">supplementary material</a>. Technical details on the B-DARMA specification are in <a href="https://www.sciencedirect.com/science/article/pii/S0169207024000049">Katz, Brusch, and Weiss (2024)</a>.</p>
+
+            <h3>Data</h3>
+            <p>We used two anonymized Airbnb datasets spanning January 2014 to December 2019 (pre-COVID). City A is a large metropolitan market with strong seasonal variability. City B is a midsized leisure destination with more moderate seasonality. Each dataset contains daily booking counts, trip dates, and lead times in months. We created 13 monthly lead-time buckets (0 to 12). Training period was 2014 through 2018; test period was all of 2019.</p>
+
+            <h3>Results</h3>
+            <p>We benchmarked against a bottom-up Prophet approach: separate univariate Prophet forecasts for each lead-time bucket, summed to get totals.</p>
+            <table>
+              <thead><tr><th>City</th><th>Method</th><th>Booking Date MAE</th><th>Booking Date MAPE</th><th>Lead-Time Mean L1</th></tr></thead>
+              <tbody>
+                <tr><td>A</td><td>Two-Part</td><td>5,083</td><td>4.8%</td><td>0.0229</td></tr>
+                <tr><td>A</td><td>Bottom-Up</td><td>5,336</td><td>5.07%</td><td>0.0389</td></tr>
+                <tr><td>B</td><td>Two-Part</td><td>1,406</td><td>3.07%</td><td>0.0300</td></tr>
+                <tr><td>B</td><td>Bottom-Up</td><td>1,455</td><td>3.15%</td><td>0.0499</td></tr>
+              </tbody>
+            </table>
+            <p>The two-part approach outperformed bottom-up Prophet on both axes in both markets. The compositional framework captures cross-bucket correlations that independent univariate forecasts miss. The improvement is most visible in the lead-time distributions: normalized L1 distance drops by roughly 40% in both cities.</p>
+
+            <h3>Why this matters in practice</h3>
+            <p>The modularity is the real advantage. Adjusting total forecasts in response to a macro shock or event does not require refitting the lead-time model. Scenario analysis becomes fast. And for short-horizon forecasting, where some future bookings are already known, existing reservations serve as a baseline while the two-part model projects additional bookings that might still materialize.</p>
+            <p>B-DARMA can also incorporate exogenous covariates on the trip-date side. A Super Bowl indicator or Easter flag can shift proportions in the relevant lead-time bucket, linking trip-date features to booking-date allocations under one framework.</p>
+
+            <h3>Limitations</h3>
+            <p>Splitting the process into two parts may miss interactions between total demand and lead-time behavior that a unified model could capture. B-DARMA assumes strictly positive proportions, so sparse or zero-valued lead-time buckets require care. And if lead times are static or not important to your decision, the added complexity is not justified.</p>
+
+            <h3>References</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Aitchison, J. (1986). <em>The Statistical Analysis of Compositional Data.</em> Chapman &amp; Hall.<br>
+              Armstrong, J.S. (2001). Combining Forecasts. In: <em>Principles of Forecasting.</em> Springer.<br>
+              Hyndman, R.J., Ahmed, R.A., Athanasopoulos, G., &amp; Shang, H.L. (2011). Optimal combination forecasts for hierarchical time series. <em>Computational Statistics &amp; Data Analysis</em>, 55(9), 2579-2589.<br>
+              Katz, H., Brusch, K.T., &amp; Weiss, R.E. (2024). A Bayesian Dirichlet auto-regressive moving average model for forecasting lead times. <em>International Journal of Forecasting</em>, 40(4), 1556-1567.<br>
+              Silvestrini, A. &amp; Veredas, D. (2008). Temporal aggregation of univariate and multivariate time series models: A survey. <em>Journal of Economic Surveys</em>, 22(3), 458-497.<br>
+              Taylor, S.J. &amp; Letham, B. (2018). Forecasting at scale. <em>The American Statistician</em>, 72(1), 37-45.<br>
+              Zheng, T. &amp; Chen, R. (2017). Dirichlet ARMA models for compositional time series. <em>Journal of Multivariate Analysis</em>, 158, 31-46.
+            </p>
+            <p class="note-footer">The primary dataset is proprietary. Stan code for the B-DARMA model and supplementary material are available at <a href="https://github.com/harrisonekatz/consistent_forecasting_bdarma_paper">github.com/harrisonekatz/consistent_forecasting_bdarma_paper</a>.</p>
+          </div>
+        </div>
+
       </div>
     </section>
     <section id="research">
@@ -140,12 +251,9 @@
     </section>
   </main>
   <footer>All views are my own. Last updated February 2026.</footer>
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     (function(){var photos=['photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg','photo5.jpg','photo6.jpg'];var img=document.getElementById('profile-photo');if(img){img.src=photos[Math.floor(Math.random()*photos.length)];}})();
     var toggle=document.querySelector('.theme-toggle');var html=document.documentElement;var savedTheme=localStorage.getItem('theme');var systemDark=window.matchMedia('(prefers-color-scheme: dark)').matches;if(savedTheme==='dark'||(!savedTheme&&systemDark)){html.setAttribute('data-theme','dark');toggle.textContent='☾';}
     toggle.addEventListener('click',function(){var isDark=html.getAttribute('data-theme')==='dark';if(isDark){html.removeAttribute('data-theme');toggle.textContent='☀';localStorage.setItem('theme','light');}else{html.setAttribute('data-theme','dark');toggle.textContent='☾';localStorage.setItem('theme','dark');}});
     document.querySelectorAll('.section-header').forEach(function(header){header.addEventListener('click',function(){var content=header.nextElementSibling;var isHidden=content.classList.contains('hidden');if(isHidden){content.classList.remove('hidden');content.style.maxHeight=content.scrollHeight+'px';header.classList.remove('collapsed');}else{content.classList.add('hidden');content.style.maxHeight='0';header.classList.add('collapsed');}});});
-    document.querySelectorAll('.section-content').forEach(function(content){content.style.maxHeight=content.scrollHeight+'px';});
-  </script>
-</body>
-</html>
+   
