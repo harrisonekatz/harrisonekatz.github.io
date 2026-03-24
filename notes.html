@@ -87,6 +87,37 @@
     <h1 class="page-title">Notes</h1>
     <p class="page-intro">Short pieces on forecasting methods, production systems, and lessons from running models at scale. Some are original; others first appeared in <a href="https://foresight.forecasters.org/">Foresight</a> and are reposted here with permission. For peer-reviewed work, see <a href="index.html#research">Research</a>.</p>
 
+    <!-- === NOTE 0: COVID Forecasting Retrospective (Airbnb Engineering Blog) === -->
+    <div class="note-entry" id="covid-forecasting-retrospective">
+      <div class="note-entry-title">What COVID Did to Our Forecasting Models — and What We Built to Handle the Next Shock</div>
+      <div class="note-entry-meta">March 2026. Originally published on the <a href="https://medium.com/airbnb-engineering/what-covid-did-to-our-forecasting-models-and-what-we-built-to-handle-the-next-shock-ccbf0e1f7fa9">Airbnb Engineering Blog</a>.</div>
+      <div class="note-entry-links">
+        <a href="https://medium.com/airbnb-engineering/what-covid-did-to-our-forecasting-models-and-what-we-built-to-handle-the-next-shock-ccbf0e1f7fa9">Full post</a>
+      </div>
+      <div class="note-body">
+        <h3>The problem</h3>
+        <p>Many financial metrics at Airbnb depend on two separate events: when guests book, and when they actually travel. The distribution of that gap (the lead-time composition) determines how today's bookings translate into future revenue. In March 2020, that relationship broke. Lockdowns compressed booking horizons. Reopenings triggered short-lead surges. New variant waves dried up near-term bookings while far-out bookings persisted. The two signals (gross volume and the temporal distribution of realization) were tangled together, and models that tried to learn them jointly could not disentangle which changes came from volume swings and which reflected structural shifts in booking behavior.</p>
+
+        <h3>The architectural fix: separate what from when</h3>
+        <p>The core decision was a decomposition into two components: (1) gross metrics on the booking-date axis (how many bookings are recorded each day, a standard time series problem), and (2) lead-time composition (of those bookings, what fraction correspond to trips in each future window, a compositional time series problem). The trip-date forecast is the product of the two.</p>
+        <p>Standard time series methods do not respect the simplex constraint: proportions must be non-negative and sum to one. Naive approaches that forecast each lead-time bucket independently produce incoherent results. We developed B-DARMA (Bayesian Dirichlet Auto-Regressive Moving Average) for this class of problem. The Dirichlet distribution enforces valid compositions, the auto-regressive and moving average components capture temporal dynamics in how those compositions evolve, and the Bayesian framework produces calibrated predictive distributions with honest uncertainty. The separation also made diagnostics tractable: when forecasts went wrong, we could tell whether the problem was in gross volume or in the compositional dynamics.</p>
+        <p>The original methodology is in the <a href="https://www.sciencedirect.com/science/article/pii/S0169207024000049">International Journal of Forecasting</a> (Katz, Brusch, and Weiss, 2024), with extensions for time-varying volatility (<a href="https://www.sciencedirect.com/science/article/pii/S0169207026000166">B-DARCH</a>, Katz and Weiss, 2026) and structural break intervention described below.</p>
+
+        <h3>The second surprise: distributions did not snap back</h3>
+        <p>By late 2021, gross booking volumes had largely recovered. But the lead-time compositions had shifted and stayed shifted. To quantify this, we measured distributional divergence from a pre-pandemic baseline using a normalized L1 (Manhattan) distance. Rather than reducing the distribution to a mean or median, this captures the full shape change. Applying this to booking data across four major U.S. cities from 2018 to 2022, we found a clear two-phase pattern: an abrupt disruption at pandemic onset, followed by a partial recovery that plateaued well short of pre-pandemic norms. International guests diverged more sharply and recovered more slowly than domestic travelers, consistent with the compounding effect of travel restrictions and longer planning cycles for cross-border trips.</p>
+        <p>We published this analysis in <a href="https://www.sciencedirect.com/science/article/pii/S2666957925000205"><em>Annals of Tourism Research: Empirical Insights</em></a> (Katz, Savage, and Coles, 2025). The same distributional divergence metric that flagged the pandemic shift became a diagnostic for model health: if the predicted lead-time composition is consistently diverging from realized, that signals model misspecification, not just unusual inputs. It separates "the model is right but the world is weird" from "the model's assumptions no longer hold."</p>
+
+        <h3>Building models that learn structural shifts</h3>
+        <p>The obvious fix (dummy variables for the COVID period) worked in-sample and failed out-of-sample. The pandemic was not a single fixed effect. It was a sequence of distinct shocks, each with its own directional impact on the composition. Fitting a separate dummy for each disruption period means estimating a new parameter every time the world changes, with no ability to generalize or project forward. You get a model that perfectly explains the past and has nothing to say about the future.</p>
+        <p>We extended B-DARMA with a directional-shift intervention mechanism that decomposes a structural break into three components: a direction vector (which components gain share and which lose), an amplitude parameter (how large the redistribution is), and a logistic gate function (governing timing and speed). The logistic gate is the key: instead of a binary before/after indicator, it learns a smooth S-curve that ramps from zero to one over a window of time, representing both sudden shocks and gradual structural transitions, and projecting the transition forward into unobserved periods.</p>
+        <p>In a rolling one-step-ahead evaluation over peak COVID disruption (July 2020 through March 2021), the intervention model reduced Aitchison distance by 31% versus baseline and improved 80% prediction interval coverage from 54% to 80%. The calibration improvement mattered more than the point forecast improvement: during a crisis, decision-makers need honest uncertainty bounds. The full methodology is in the working paper <a href="https://arxiv.org/abs/2601.16821">Directional-Shift Dirichlet ARMA Models for Compositional Time Series with Structural Break Intervention</a>.</p>
+
+        <h3>Three lessons</h3>
+        <p>First, decompose volume from timing for delay-aware forecasting. The lead-time distribution is not a nuisance parameter on the way to a trip-date forecast. It responds to levers the business can pull (pricing, cancellation policy, marketing), and modeling it separately makes those effects visible and forecastable. Second, monitor distributions, not just point statistics. The normalized L1 divergence flags distributional shifts long before they appear in averages. Third, build break detection into the model rather than treating disruptions as one-off anomalies. The persistent structural shift after gross metrics recovered was the harder and more consequential modeling problem. The intervention framework is domain-agnostic; we have since applied variations to currency share forecasting and energy mix data.</p>
+        <p class="note-footer">The two-part forecasting methodology is described in <a href="https://arxiv.org/abs/2504.11194">Katz, Savage, and Brusch (2025)</a>. The distributional lead-time analysis is in <a href="https://www.sciencedirect.com/science/article/pii/S2666957925000205">Katz, Savage, and Coles (2025)</a>. The structural break extension is in <a href="https://arxiv.org/abs/2601.16821">Katz (2026, arXiv)</a>.</p>
+      </div>
+    </div>
+
     <!-- === NOTE 1: Compositional vs Bottom-Up === -->
     <div class="note-entry" id="compositional-vs-bottom-up">
       <div class="note-entry-title">Three cases where compositional modeling beats bottom-up aggregation</div>
@@ -174,7 +205,7 @@
     </div>
 
   </main>
-  <footer>All views are my own. Last updated February 2026.</footer>
+  <footer>All views are my own. Last updated March 2026.</footer>
   <script>
     var toggle=document.querySelector('.theme-toggle');var html=document.documentElement;var savedTheme=localStorage.getItem('theme');var systemDark=window.matchMedia('(prefers-color-scheme: dark)').matches;if(savedTheme==='dark'||(!savedTheme&&systemDark)){html.setAttribute('data-theme','dark');toggle.textContent='☾';}
     toggle.addEventListener('click',function(){var isDark=html.getAttribute('data-theme')==='dark';if(isDark){html.removeAttribute('data-theme');toggle.textContent='☀';localStorage.setItem('theme','light');}else{html.setAttribute('data-theme','dark');toggle.textContent='☾';localStorage.setItem('theme','dark');}});
