@@ -65,6 +65,9 @@
     .research-title { font-weight: 600; margin-bottom: 0.35rem; }
     .research-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem; }
     .research-links { display: flex; gap: 1rem; font-size: 0.85rem; }
+    .talk-figure { margin: 1.75rem 0 0; }
+    .talk-figure img { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-alt); }
+    .talk-figure figcaption { margin-top: 0.6rem; font-size: 0.85rem; line-height: 1.5; color: var(--text-muted); }
     footer { max-width: 800px; margin: 0 auto; padding: 2rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); }
     @media (max-width: 600px) {
       .intro { grid-template-columns: 1fr; text-align: center; }
@@ -159,16 +162,21 @@
       <h2 class="section-header">Talks &amp; Media<span class="toggle">+</span></h2>
       <div class="section-content">
         <div class="news-table">
+          <div class="news-row"><span class="news-date">Jul 2026</span><span class="news-content"><em>Forecast &amp; the Street.</em> Fireside with Andrew Slabin, VP of Investor Relations, <strong>Airbnb Strategic Finance &amp; Analytics offsite</strong>, San Francisco, CA.</span></div>
           <div class="news-row"><span class="news-date">Jun–Jul 2026</span><span class="news-content"><em>A Bayesian Dirichlet Framework for Compositional Time Series Forecasting.</em> <strong>46th International Symposium on Forecasting</strong>, Montreal, Canada.</span></div>
           <div class="news-row"><span class="news-date">Jun 2026</span><span class="news-content"><em>When Forecasting Isn't About Accuracy.</em> Guest appearance, <strong>IIF Forecasting Impact podcast</strong> (<a href="https://www.buzzsprout.com/1641538/episodes/19403020-when-forecasting-isn-t-about-accuracy-with-harrison-katz-of-airbnb">listen</a>).</span></div>
           <div class="news-row"><span class="news-date">Apr 2026</span><span class="news-content"><em>Forecasting in the Wild.</em> Practitioner talk, <strong>North Carolina State University</strong>, Raleigh, NC.</span></div>
         </div>
+        <figure class="talk-figure">
+          <img src="talk-fireside.jpg" width="1600" height="630" loading="lazy" alt="Harrison Katz on stage during the Forecast &amp; the Street fireside, with Andrew Slabin joining by video and Adam Liss moderating.">
+          <figcaption><em>Forecast &amp; the Street</em>, on how a forecast becomes the single number a company commits to publicly. With Andrew Slabin (on screen), July 2026.</figcaption>
+        </figure>
       </div>
     </section>
   </main>
   <footer>All views are my own. Last updated August 2026.</footer>
   <script>
-    (function(){var photos=['photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg','photo5.jpg','photo6.jpg'];var img=document.getElementById('profile-photo');if(img){img.src=photos[Math.floor(Math.random()*photos.length)];}})();
+    (function(){var photos=['photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg','photo5.jpg','photo6.jpg','photo7.jpg'];var img=document.getElementById('profile-photo');if(img){img.src=photos[Math.floor(Math.random()*photos.length)];}})();
     var toggle=document.querySelector('.theme-toggle');var html=document.documentElement;var savedTheme=localStorage.getItem('theme');var systemDark=window.matchMedia('(prefers-color-scheme: dark)').matches;if(savedTheme==='dark'||(!savedTheme&&systemDark)){html.setAttribute('data-theme','dark');toggle.textContent='☾';}
     toggle.addEventListener('click',function(){var isDark=html.getAttribute('data-theme')==='dark';if(isDark){html.removeAttribute('data-theme');toggle.textContent='☀';localStorage.setItem('theme','light');}else{html.setAttribute('data-theme','dark');toggle.textContent='☾';localStorage.setItem('theme','dark');}});
     document.querySelectorAll('.section-header').forEach(function(header){header.addEventListener('click',function(){var content=header.nextElementSibling;var isHidden=content.classList.contains('hidden');if(isHidden){content.classList.remove('hidden');content.style.maxHeight=content.scrollHeight+'px';header.classList.remove('collapsed');}else{content.classList.add('hidden');content.style.maxHeight='0';header.classList.add('collapsed');}});});
